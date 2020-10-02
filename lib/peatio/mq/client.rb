@@ -6,14 +6,17 @@ module Peatio::MQ
       attr_accessor :connection
 
       def connect!
-        options = {
-          host:     ENV["RABBITMQ_HOST"] || "0.0.0.0",
-          port:     ENV["RABBITMQ_PORT"] || "5672",
-          username: ENV["RABBITMQ_USER"],
-          password: ENV["RABBITMQ_PASSWORD"],
-        }
-        @connection = Bunny.new(options)
+        @connection = Bunny.new(rabbitmq_credentials)
         @connection.start
+      end
+
+      def rabbitmq_credentials
+        return ENV['EVENT_API_RABBITMQ_URL'] if ENV['EVENT_API_RABBITMQ_URL'].present?
+
+        { host:     ENV.fetch('EVENT_API_RABBITMQ_HOST', '0.0.0.0'),
+          port:     ENV.fetch('EVENT_API_RABBITMQ_PORT', '5672'),
+          username: ENV.fetch('EVENT_API_RABBITMQ_USERNAME', 'guest'),
+          password: ENV.fetch('EVENT_API_RABBITMQ_PASSWORD', 'guest') }
       end
 
       def disconnect
