@@ -3,7 +3,12 @@
 require "logger"
 require "json"
 require "base64"
-require "mysql2"
+if defined?(JRUBY_VERSION)
+  require 'activerecord-jdbc-adapter'
+  require 'activerecord-jdbcmysql-adapter'
+else
+  require "mysql2"
+end
 require "bunny"
 require "eventmachine"
 require "em-websocket"

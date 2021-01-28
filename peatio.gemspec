@@ -33,12 +33,19 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday_middleware", "~> 0.13.1"
   spec.add_dependency "faye", "~> 1.2"
   spec.add_dependency "jwt"
-  spec.add_dependency "mysql2"
+  if defined?(JRUBY_VERSION)
+    spec.add_dependency 'activerecord-jdbc-adapter'
+    spec.add_dependency 'jdbc-mysql'
+    spec.add_dependency 'activerecord-jdbcmysql-adapter'
+    spec.add_dependency 'trinidad'
+  else
+    spec.add_dependency "mysql2"
+    spec.add_dependency "thin"
+  end
   spec.add_dependency "prometheus-client"
-  spec.add_dependency "thin"
 
   spec.add_development_dependency "bump"
-  spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "bunny-mock"
   spec.add_development_dependency "em-spec"
   spec.add_development_dependency "em-websocket-client"
