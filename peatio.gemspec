@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "peatio/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "peatio"
+  spec.name = "peatio-jruby"
   spec.version = Peatio::VERSION
   spec.authors = ["Louis B.", "Camille M."]
   spec.email = ["lbellet@heliostech.fr"]
