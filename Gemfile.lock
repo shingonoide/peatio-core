@@ -1,8 +1,10 @@
 PATH
   remote: .
   specs:
-    peatio (2.6.2)
+    peatio-jruby (2.6.2)
       activemodel (> 5.2, <= 6.0.0)
+      activerecord-jdbc-adapter
+      activerecord-jdbcmysql-adapter
       amqp
       bunny
       clamp
@@ -11,16 +13,24 @@ PATH
       eventmachine
       faraday_middleware (~> 0.13.1)
       faye (~> 1.2)
+      jdbc-mysql
       jwt
-      mysql2
       prometheus-client
-      thin
+      trinidad
 
 GEM
   remote: https://rubygems.org/
   specs:
     activemodel (6.0.0)
       activesupport (= 6.0.0)
+    activerecord (6.0.0)
+      activemodel (= 6.0.0)
+      activesupport (= 6.0.0)
+    activerecord-jdbc-adapter (50.0)
+      activerecord (>= 2.2)
+    activerecord-jdbcmysql-adapter (50.0)
+      activerecord-jdbc-adapter (~> 50.0)
+      jdbc-mysql (~> 5.1.36)
     activesupport (6.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -39,12 +49,9 @@ GEM
       amq-protocol (~> 2.3, >= 2.3.1)
     bunny-mock (1.7.0)
       bunny (>= 1.7)
-    byebug (11.1.3)
     clamp (1.3.2)
-    coderay (1.1.3)
     concurrent-ruby (1.1.6)
     cookiejar (0.3.3)
-    daemons (1.3.1)
     diff-lcs (1.3)
     docile (1.3.2)
     em-http-request (1.1.7)
@@ -59,13 +66,14 @@ GEM
       eventmachine
     em-synchrony (1.0.6)
       eventmachine (>= 1.0.0.beta.1)
-    em-websocket (0.5.1)
+    em-websocket (0.5.2)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     em-websocket-client (0.1.2)
       eventmachine
       websocket
     eventmachine (1.2.7)
+    eventmachine (1.2.7-java)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
@@ -82,29 +90,26 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     http_parser.rb (0.6.0)
+    http_parser.rb (0.6.0-java)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     io-console (0.5.6)
     irb (1.2.4)
       reline (>= 0.0.1)
     jaro_winkler (1.5.4)
+    jaro_winkler (1.5.4-java)
+    jdbc-mysql (5.1.47)
+    jruby-rack (1.1.21)
     json (2.3.0)
+    json (2.3.0-java)
     jwt (2.2.2)
-    method_source (1.0.0)
     minitest (5.14.1)
     multi_json (1.15.0)
     multipart-post (2.1.1)
-    mysql2 (0.5.3)
     parallel (1.19.1)
     parser (2.7.1.3)
       ast (~> 2.4.0)
     prometheus-client (2.1.0)
-    pry (0.13.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-    pry-byebug (3.9.0)
-      byebug (~> 11.0)
-      pry (~> 0.13.0)
     public_suffix (4.0.6)
     rack (2.2.2)
     rainbow (3.0.0)
@@ -153,32 +158,35 @@ GEM
     simplecov-json (0.2.1)
       json
       simplecov
-    thin (1.7.2)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0, >= 1.0.4)
-      rack (>= 1, < 3)
     thread_safe (0.3.6)
+    thread_safe (0.3.6-java)
+    trinidad (1.4.6)
+      jruby-rack (~> 1.1.13)
+      trinidad_jars (>= 1.3.0, < 1.5.0)
+    trinidad_jars (1.4.2)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
     websocket (1.2.8)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
+    websocket-driver (0.7.3-java)
+      websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.3.0)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
   bump
-  bundler (~> 1.16)
+  bundler
   bunny-mock
   em-spec
   em-websocket-client
   irb
-  peatio!
-  pry-byebug
+  peatio-jruby!
   rake (~> 13.0)
   rspec (~> 3.0)
   rspec_junit_formatter

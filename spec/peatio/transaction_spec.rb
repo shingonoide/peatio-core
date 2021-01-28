@@ -1,4 +1,3 @@
-require 'pry-byebug'
 
 describe Peatio::Transaction do
   context :validations do
