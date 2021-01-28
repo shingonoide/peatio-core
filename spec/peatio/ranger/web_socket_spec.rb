@@ -167,7 +167,7 @@ describe Peatio::Ranger do
       em {
         EM.add_timer(1) { fail "timeout" }
 
-        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 88888)
+        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 13999)
 
         EM.add_timer(0.1) do
           wsc = ws_connect("/?stream=stream_1&stream=stream_2", { "Authorization" => "Bearer #{valid_token}" })
@@ -213,7 +213,7 @@ describe Peatio::Ranger do
       em {
         EM.add_timer(1) { fail "timeout" }
 
-        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 88888)
+        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 13999)
 
         EM.add_timer(0.1) do
           ws_client = ws_connect("/?stream=btcusd.order")
@@ -260,7 +260,7 @@ describe Peatio::Ranger do
       em {
         EM.add_timer(1) { fail "timeout" }
 
-        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 88888)
+        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 13999)
 
         EM.add_timer(0.1) do
           ws_client = ws_connect("/")
@@ -316,7 +316,7 @@ describe Peatio::Ranger do
       em {
         EM.add_timer(1) { fail "timeout" }
 
-        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 88888)
+        Peatio::Ranger.run(jwt_public_key, ex_name, ranger_port: 13999)
 
         EM.add_timer(0.1) do
           ws_client = ws_connect("/?stream=btcusd.order")
